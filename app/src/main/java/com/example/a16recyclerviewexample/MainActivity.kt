@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import com.example.a16recyclerviewexample.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), CountryCallback {
 
     lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,7 +23,15 @@ class MainActivity : AppCompatActivity() {
         val countryAdapter = CountryAdapter()
 
         countryAdapter.setData(PaisesLatam.countries)
+
+        countryAdapter.setCountryCallback(this)
+
         binding.rvCountries.adapter = countryAdapter
+
+    }
+
+    override fun showCountry(s: String) {
+        binding.tvPopulation.text = s
     }
 
 }
